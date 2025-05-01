@@ -22,24 +22,22 @@ export default function Navbar({ onSearch }) {
     ];
 
     return (
-        <nav className="bg-white text-black shadow-md sticky top-0 z-50 px-6 py-4 font-Poppins">
-            <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+        <nav className="bg-gradient-to-r from-pink-300 via-purple-300 to-blue-300 text-white shadow-md sticky top-0 z-50 px-6 py-4 font-Poppins">
+            <div className="max-w-7xl mx-auto flex flex-wrap md:flex-nowrap items-center justify-between gap-4">
 
                 {/* Nav Items */}
-                <div className="flex-1 flex justify-center">
-                    <ul className="flex flex-wrap justify-center space-x-6 font-semibold text-sm md:text-base">
-                        {navItems.map(item => (
-                            <li key={item.label}>
-                                <Link
-                                    to={item.to}
-                                    className="text-pink-600 hover:text-pink-800 transition-all duration-300 ease-in-out transform hover:scale-[1.05] hover:brightness-110"
-                                >
-                                    {item.label}
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+                <ul className="flex flex-wrap md:flex-nowrap justify-center gap-6 font-semibold text-sm md:text-base list-none w-full md:w-auto">
+                    {navItems.map(item => (
+                        <li key={item.label}>
+                            <Link
+                                to={item.to}
+                                className="text-white hover:text-pink-800 transition-all duration-300 ease-in-out transform hover:scale-[1.05] hover:brightness-110"
+                            >
+                                {item.label}
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
 
                 {/* Search Bar */}
                 <div className="relative w-full md:w-64">

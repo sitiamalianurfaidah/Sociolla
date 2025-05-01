@@ -1,11 +1,18 @@
+import Navbar from '../components/Navbar'; // Import Navbar
 import FeaturedProducts from '../components/FeaturedProducts';
 import Categories from '../components/Categories';
 import Footer from '../components/Footer';
 import './Home.css';
 
 export default function Home() {
+    const handleSearch = (searchTerm) => {
+        console.log('Search term:', searchTerm); // Implementasikan logika pencarian di sini
+    };
+
     return (
         <div className="home">
+            {/* Navbar */}
+            <Navbar onSearch={handleSearch} />
 
             {/* Hero Section */}
             <section id="hero" className="hero-section">

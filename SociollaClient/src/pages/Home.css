@@ -1,4 +1,9 @@
 /* src/pages/Home.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 .home {
     font-family: Arial, sans-serif;
@@ -81,4 +86,22 @@
     color: white;
     padding: 20px;
     text-align: center;
+}
+
+nav.bg-gradient-to-r {
+    background: linear-gradient(to right, #fce4ec, #f8bbd0);
+}
+
+/* Pastikan ul pada navbar tidak memiliki poin */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Navbar specific: No bullet points on the navbar list */
+nav .container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
