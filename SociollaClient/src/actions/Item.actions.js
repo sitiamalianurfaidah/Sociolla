@@ -1,6 +1,5 @@
 import axios from 'axios';
-
-const backend_URI = 'http://localhost:5000';
+const API = import.meta.env.VITE_API_URL;
 
 // Helper function for base API response structure
 const baseApiResponse = (data, isSuccess) => {
@@ -19,7 +18,7 @@ const baseApiResponse = (data, isSuccess) => {
         formData.append(key, input[key]);
         }
 
-        const response = await axios.post(`${backend_URI}/item/create`, formData, {
+        const response = await axios.post(`${API}/item/create`, formData, {
         headers: {
             'Content-Type': 'multipart/form-data',
         },
@@ -34,7 +33,7 @@ const baseApiResponse = (data, isSuccess) => {
     // Get All Items
     export const getItems = async () => {
     try {
-        const response = await axios.get(`${backend_URI}/item`);
+        const response = await axios.get(`${API}/item`);
         return baseApiResponse(response.data.payload, true);
     } catch (error) {
         console.error(error);
@@ -45,7 +44,7 @@ const baseApiResponse = (data, isSuccess) => {
     // Get Item by ID
     export const getItemById = async (id) => {
     try {
-        const response = await axios.get(`${backend_URI}/item/byId/${id}`);
+        const response = await axios.get(`${API}/item/byId/${id}`);
         return baseApiResponse(response.data.payload, true);
     } catch (error) {
         console.error(error);
@@ -56,7 +55,7 @@ const baseApiResponse = (data, isSuccess) => {
     // Jika ingin menambahkan `getItemsByStoreId` di `Item.actions.js`
     export const getItemsByStoreId = async (storeId) => {
         try {
-            const response = await axios.get(`${backend_URI}/item/byStoreId/${storeId}`);
+            const response = await axios.get(`${API}/item/byStoreId/${storeId}`);
             return baseApiResponse(response.data.payload, true);
         } catch (error) {
             console.error(error);
@@ -74,7 +73,7 @@ const baseApiResponse = (data, isSuccess) => {
         formData.append(key, input[key]);
         }
 
-        const response = await axios.put(`${backend_URI}/item`, formData, {
+        const response = await axios.put(`${API}/item`, formData, {
         headers: {
             'Content-Type': 'multipart/form-data',
         },
@@ -89,7 +88,7 @@ const baseApiResponse = (data, isSuccess) => {
     // Delete Item
     export const deleteItem = async (id) => {
     try {
-        const response = await axios.delete(`${backend_URI}/item/${id}`);
+        const response = await axios.delete(`${API}/item/${id}`);
         return baseApiResponse(response.data.payload, true);
     } catch (error) {
         console.error(error);

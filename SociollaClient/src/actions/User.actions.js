@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const backend_URI = 'http://localhost:5000';
+const API = import.meta.env.VITE_API_URL;
 
 // Helper function for base API response structure
 const baseApiResponse = (data, isSuccess) => {
@@ -13,7 +13,7 @@ const baseApiResponse = (data, isSuccess) => {
 // Get User by Email
 export const getUser = async (email) => {
   try {
-    const response = await axios.get(`${backend_URI}/user/${email}`);
+    const response = await axios.get(`${API}/user/${email}`);
     return baseApiResponse(response.data.payload, true);
   } catch (error) {
     console.error(error);
@@ -24,7 +24,7 @@ export const getUser = async (email) => {
 // Update User
 export const updateUser = async (input) => {
   try {
-    const response = await axios.put(`${backend_URI}/user`, input);
+    const response = await axios.put(`${API}/user`, input);
     return baseApiResponse(response.data.payload, true);
   } catch (error) {
     console.error(error);
@@ -35,7 +35,7 @@ export const updateUser = async (input) => {
 // Delete User
 export const deleteUser = async (id) => {
   try {
-    const response = await axios.delete(`${backend_URI}/user/${id}`);
+    const response = await axios.delete(`${API}/user/${id}`);
     return baseApiResponse(response.data.payload, true);
   } catch (error) {
     console.error(error);
@@ -46,7 +46,7 @@ export const deleteUser = async (id) => {
 // Top Up User Balance
 export const topUpBalance = async (input) => {
   try {
-    const response = await axios.post(`${backend_URI}/user/topUp`, input);
+    const response = await axios.post(`${API}/user/topUp`, input);
     return baseApiResponse(response.data.payload, true);
   } catch (error) {
     console.error(error);

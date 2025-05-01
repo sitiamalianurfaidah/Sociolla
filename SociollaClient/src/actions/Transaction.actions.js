@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const backend_URI = 'http://localhost:5000';
+const API = import.meta.env.VITE_API_URL;
 
 // Helper function for base API response structure
 const baseApiResponse = (data, isSuccess) => {
@@ -13,7 +13,7 @@ const baseApiResponse = (data, isSuccess) => {
     // Create Transaction
     export const createTransaction = async (input) => {
     try {
-        const response = await axios.post(`${backend_URI}/transaction/create`, input);
+        const response = await axios.post(`${API}/transaction/create`, input);
         return baseApiResponse(response.data.payload, true);
     } catch (error) {
         console.error(error);
@@ -24,7 +24,7 @@ const baseApiResponse = (data, isSuccess) => {
     // Pay Transaction
     export const payTransaction = async (input) => {
     try {
-        const response = await axios.post(`${backend_URI}/transaction/pay`, input);
+        const response = await axios.post(`${API}/transaction/pay`, input);
         return baseApiResponse(response.data.payload, true);
     } catch (error) {
         console.error(error);
@@ -35,7 +35,7 @@ const baseApiResponse = (data, isSuccess) => {
     // Get All Transactions
     export const getAllTransactions = async () => {
     try {
-        const response = await axios.get(`${backend_URI}/transaction`);
+        const response = await axios.get(`${API}/transaction`);
         return baseApiResponse(response.data.payload, true);
     } catch (error) {
         console.error(error);
@@ -46,7 +46,7 @@ const baseApiResponse = (data, isSuccess) => {
     // Delete Transaction
     export const deleteTransaction = async (id) => {
     try {
-        const response = await axios.delete(`${backend_URI}/transaction/${id}`);
+        const response = await axios.delete(`${API}/transaction/${id}`);
         return baseApiResponse(response.data.payload, true);
     } catch (error) {
         console.error(error);

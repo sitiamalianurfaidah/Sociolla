@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const backend_URI = 'http://localhost:5000';
+const API = import.meta.env.VITE_API_URL;
 
 // Helper function for base API response structure
 const baseApiResponse = (data, isSuccess) => {
@@ -13,7 +13,7 @@ const baseApiResponse = (data, isSuccess) => {
     // Create Store
     export const createStore = async (input) => {
     try {
-        const response = await axios.post(`${backend_URI}/store/create`, input);
+        const response = await axios.post(`${API}/store/create`, input);
         return baseApiResponse(response.data.payload, true);
     } catch (error) {
         console.error(error);
@@ -24,7 +24,7 @@ const baseApiResponse = (data, isSuccess) => {
     // Get All Stores
     export const getAllStores = async () => {
     try {
-        const response = await axios.get(`${backend_URI}/store/getAll`);
+        const response = await axios.get(`${API}/store/getAll`);
         return baseApiResponse(response.data.payload, true);
     } catch (error) {
         console.error(error);
@@ -35,7 +35,7 @@ const baseApiResponse = (data, isSuccess) => {
     // Get Store by ID
     export const getStoreById = async (id) => {
     try {
-        const response = await axios.get(`${backend_URI}/store/${id}`);
+        const response = await axios.get(`${API}/store/${id}`);
         return baseApiResponse(response.data.payload, true);
     } catch (error) {
         console.error(error);
@@ -46,7 +46,7 @@ const baseApiResponse = (data, isSuccess) => {
     // Update Store
     export const updateStore = async (input) => {
     try {
-        const response = await axios.put(`${backend_URI}/store`, input);
+        const response = await axios.put(`${API}/store`, input);
         return baseApiResponse(response.data.payload, true);
     } catch (error) {
         console.error(error);
@@ -57,7 +57,7 @@ const baseApiResponse = (data, isSuccess) => {
     // Delete Store
     export const deleteStore = async (id) => {
     try {
-        const response = await axios.delete(`${backend_URI}/store/${id}`);
+        const response = await axios.delete(`${API}/store/${id}`);
         return baseApiResponse(response.data.payload, true);
     } catch (error) {
         console.error(error);
