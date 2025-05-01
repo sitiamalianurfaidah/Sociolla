@@ -5,11 +5,11 @@ FROM node:18
 WORKDIR /app
 
 # 3. Salin package.json dan install dependencies
-COPY package*.json ./
+COPY SociollaServer/package*.json ./
 RUN npm install
 
 # 4. Salin semua file project ke container
-COPY . .
+COPY SociollaServer/ ./
 
 # 5. Port yang mau dibuka
 EXPOSE 5000
