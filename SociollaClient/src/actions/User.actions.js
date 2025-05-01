@@ -1,7 +1,8 @@
-import axios from "axios";
+import axios from 'axios';
 
-const backend_URI = "http://localhost:5000"
+const backend_URI = 'http://localhost:5000';
 
+// Helper function for base API response structure
 const baseApiResponse = (data, isSuccess) => {
   return {
     success: isSuccess,
@@ -9,33 +10,44 @@ const baseApiResponse = (data, isSuccess) => {
   };
 };
 
-// login
-export const loginUser = async (input) => {
+// Get User by Email
+export const getUser = async (email) => {
   try {
-    const response = await axios.post(
-      `${backend_URI}/user/login`, input
-    );
-
-    console.log("Response from Backend");
-    console.log(response.data);
-    return baseApiResponse(response.data.data, true);
+    const response = await axios.get(`${backend_URI}/user/${email}`);
+    return baseApiResponse(response.data.payload, true);
   } catch (error) {
     console.error(error);
     return baseApiResponse(null, false);
   }
 };
-  
-  
-// sign up
-export const signUpUser = async (input) => {
-  try {
-    const response = await axios.post(
-      `${backend_URI}/user/addUser`, input
-    );
 
-    console.log("Response from Backend");
-    console.log(response.data);
-    return baseApiResponse(response.data.data, true);
+// Update User
+export const updateUser = async (input) => {
+  try {
+    const response = await axios.put(`${backend_URI}/user`, input);
+    return baseApiResponse(response.data.payload, true);
+  } catch (error) {
+    console.error(error);
+    return baseApiResponse(null, false);
+  }
+};
+
+// Delete User
+export const deleteUser = async (id) => {
+  try {
+    const response = await axios.delete(`${backend_URI}/user/${id}`);
+    return baseApiResponse(response.data.payload, true);
+  } catch (error) {
+    console.error(error);
+    return baseApiResponse(null, false);
+  }
+};
+
+// Top Up User Balance
+export const topUpBalance = async (input) => {
+  try {
+    const response = await axios.post(`${backend_URI}/user/topUp`, input);
+    return baseApiResponse(response.data.payload, true);
   } catch (error) {
     console.error(error);
     return baseApiResponse(null, false);
