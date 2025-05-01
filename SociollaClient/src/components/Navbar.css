@@ -7,29 +7,29 @@
     color: white;
     height: 80px;
 }
-  
-.topnav-left,
-.topnav-right {
-    display: flex;
-    align-items: center;
-    gap: 20px; /* Adjust spacing between items */
-}
-  
-.topnav a {
-    color: #f2f2f2;
-    text-decoration: none;
-    font-size: 20px;
-    padding: 10px;
-    border-radius: 5px;
-}
-  
-.topnav a:hover {
-    background-color: #ddd;
-    color: black;
-}
-  
-.topnav a.active {
-    background-color: #04AA6D;
-    color: white;
-}
-  
+    
+    .topnav-left,
+    .topnav-right {
+        display: flex;
+        align-items: center;
+        gap: 20px; /* Adjust spacing between items */
+    }
+    
+    .topnav a {
+        color: #f2f2f2;
+        text-decoration: none;
+        font-size: 20px;
+        padding: 10px;
+        border-radius: 5px;
+    }
+    
+    .topnav a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+    
+    .topnav a.active {
+        background-color: #04AA6D;
+        color: white;
+    }
+    
