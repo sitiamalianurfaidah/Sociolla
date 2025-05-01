@@ -53,6 +53,18 @@ const baseApiResponse = (data, isSuccess) => {
     }
     };
 
+    // Jika ingin menambahkan `getItemsByStoreId` di `Item.actions.js`
+    export const getItemsByStoreId = async (storeId) => {
+        try {
+            const response = await axios.get(`${backend_URI}/item/byStoreId/${storeId}`);
+            return baseApiResponse(response.data.payload, true);
+        } catch (error) {
+            console.error(error);
+            return baseApiResponse(null, false);
+        }
+    };
+
+
     // Update Item
     export const updateItem = async (input, image) => {
     try {

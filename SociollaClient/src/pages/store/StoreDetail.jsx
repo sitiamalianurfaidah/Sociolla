@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getStore } from '../../actions/Store.actions';
+import { getStoreById } from '../../actions/Store.actions';
 import { useParams } from 'react-router-dom';
 
 const StoreDetail = () => {
@@ -8,7 +8,7 @@ const StoreDetail = () => {
 
     useEffect(() => {
         const fetchStore = async () => {
-        const result = await getStore(id);
+        const result = await getStoreById(id);
         if (result?.success) {
             setStore(result.payload);
         }

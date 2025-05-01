@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { registerUser } from '../../actions/auth.actions';
+import { signUpUser } from '../../actions/auth.actions';
 import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
@@ -12,7 +12,7 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const res = await registerUser(form);
+        const res = await signUpUser(form);
         if (res?.success) {
         alert('Registrasi berhasil!');
         navigate('/login');

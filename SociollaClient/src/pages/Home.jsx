@@ -1,4 +1,3 @@
-import Navbar from '../components/Navbar';
 import FeaturedProducts from '../components/FeaturedProducts';
 import Categories from '../components/Categories';
 import Footer from '../components/Footer';
@@ -7,7 +6,6 @@ import './Home.css';
 export default function Home() {
     return (
         <div className="home">
-            <Navbar /> {/* Navbar tidak perlu onSearch jika tidak digunakan */}
 
             {/* Hero Section */}
             <section id="hero" className="hero-section">
