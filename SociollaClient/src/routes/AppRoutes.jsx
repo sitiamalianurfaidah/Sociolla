@@ -3,7 +3,7 @@ import Home from '../pages/Home';
 import Login from '../pages/auth/Login';
 import Register from '../pages/auth/Register';
 import Profile from '../pages/user/Profile';
-import TopUp from '../pages/user/TopUp';
+import Setting from '../pages/user/Setting';
 import StoreList from '../pages/store/StoreList';
 import StoreDetail from '../pages/store/StoreDetail';
 import ItemList from '../pages/item/ItemList';
@@ -21,7 +21,7 @@ export default function AppRoutes() {
 
         {/* User */}
         <Route path="/profile" element={<Profile />} />
-        <Route path="/topup" element={<TopUp />} />
+        <Route path="/setting" element={<Setting />} />
 
         {/* Store */}
         <Route path="/stores" element={<StoreList />} />

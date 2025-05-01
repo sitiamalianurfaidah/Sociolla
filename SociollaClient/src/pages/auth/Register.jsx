@@ -1,0 +1,37 @@
+import React, { useState } from 'react';
+import { registerUser } from '../../actions/auth.actions';
+import { useNavigate } from 'react-router-dom';
+
+const Register = () => {
+    const [form, setForm] = useState({ name: '', email: '', password: '' });
+    const navigate = useNavigate();
+
+    const handleChange = (e) => {
+        setForm({ ...form, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const res = await registerUser(form);
+        if (res?.success) {
+        alert('Registrasi berhasil!');
+        navigate('/login');
+        } else {
+        alert(res?.message || 'Registrasi gagal');
+        }
+    };
+
+    return (
+        <div className="p-4 max-w-md mx-auto">
+        <h2 className="text-xl font-bold mb-4">Register</h2>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+            <input type="text" name="name" placeholder="Name" value={form.name} onChange={handleChange} required />
+            <input type="email" name="email" placeholder="Email" value={form.email} onChange={handleChange} required />
+            <input type="password" name="password" placeholder="Password" value={form.password} onChange={handleChange} required />
+            <button type="submit" className="bg-green-500 text-white py-2">Register</button>
+        </form>
+        </div>
+    );
+};
+
+export default Register;
