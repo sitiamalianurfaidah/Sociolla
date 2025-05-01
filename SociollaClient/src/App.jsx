@@ -1,26 +1,13 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { useCookies } from 'react-cookie';
-import Game from "./pages/Game";
-import SignUp from "./pages/SignUp";
-import Login from "./pages/Login";
-import Post from "./pages/Post";
-import "./App.css";
-
+import { BrowserRouter } from 'react-router-dom';
+import AppRoutes from './routes/AppRoutes';
+import Navbar from './components/Navbar'; // Pastikan ini path yang benar
+import './App.css';
 
 export default function App() {
-  const [cookies] = useCookies(['isLoggedIn']);
-
   return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/game" element={cookies.isLoggedIn ? <Game /> : <Navigate to='/login' />} />
-          <Route path="/post" element={cookies.isLoggedIn ? <Post /> : <Navigate to='/login' />} />
-          <Route path="*" element={<Navigate to='/login' />} />
-        </Routes>
-      </BrowserRouter>
-    </>
-  )
+    <BrowserRouter>
+      <Navbar /> {/* Navbar akan muncul di setiap halaman */}
+      <AppRoutes />
+    </BrowserRouter>
+  );
 }

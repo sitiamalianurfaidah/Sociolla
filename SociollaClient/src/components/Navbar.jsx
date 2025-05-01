@@ -1,28 +1,62 @@
-import { useCookies } from 'react-cookie';
-import { NavLink } from 'react-router-dom';
-import logo from '../assets/logoSBD.png';
-import './Navbar.css';
+import { useState } from 'react';
+import { Search } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
-export default function Navbar() {
-    const [cookies, setCookies] = useCookies(["username", "isLoggedIn", "score"]);
-    
-    const handleLogout = () => {
-        setCookies('score', 0, { path: '/' });
-        setCookies('isLoggedIn', false, { path: '/' });
+export default function Navbar({ onSearch }) {
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const handleSearch = (e) => {
+        setSearchTerm(e.target.value);
+        onSearch?.(e.target.value); // biar aman kalau props kosong
     };
 
+    const navItems = [
+        { label: 'Home', to: '/' },
+        { label: 'Stores', to: '/stores' },
+        { label: 'Items', to: '/items' },
+        { label: 'Transactions', to: '/transactions' },
+        { label: 'Profile', to: '/profile' },
+        { label: 'Top Up', to: '/topup' },
+        { label: 'Login', to: '/login' },
+    ];
+
     return (
-        <div className="topnav">
-            <div className="topnav-left">
-                <span className="title">NetGames</span>
-                <NavLink to="/game" className={({ isActive }) => isActive ? "active" : ""}>Play</NavLink>
-                <NavLink to="/post" className={({ isActive }) => isActive ? "active" : ""}>Scores</NavLink>
+        <nav className="bg-white text-black shadow-md sticky top-0 z-50 px-6 py-4 font-Poppins">
+        <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            
+            {/* Logo */}
+            <div className="flex items-center space-x-4">
+            <span className="text-xl font-bold">Sociolla</span>
             </div>
-            <div className="topnav-right">
-                <NavLink to="/" onClick={handleLogout}>Logout</NavLink>
-                <span className="username">{cookies.username}</span>
-                <img src={logo} style={{width:'80px'}}></img>
+
+            {/* Nav Items */}
+            <div className="flex-1 flex justify-center">
+            <ul className="flex space-x-6 font-bold text-sm md:text-base">
+                {navItems.map((item) => (
+                <li key={item.label}>
+                    <Link
+                    to={item.to}
+                    className="no-underline transition-all duration-300 ease-in-out transform hover:scale-[1.05] hover:text-purple-600"
+                    >
+                    {item.label}
+                    </Link>
+                </li>
+                ))}
+            </ul>
+            </div>
+
+            {/* Search */}
+            <div className="relative w-full md:w-64">
+            <input
+                type="text"
+                value={searchTerm}
+                onChange={handleSearch}
+                placeholder="Search anything..."
+                className="bg-[#f5f3ff] border border-gray-300 rounded pl-10 pr-3 py-1 text-sm w-full focus:outline-none focus:ring-2 focus:ring-purple-400 shadow-sm placeholder-gray-500"
+            />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
             </div>
         </div>
+        </nav>
     );
 }
