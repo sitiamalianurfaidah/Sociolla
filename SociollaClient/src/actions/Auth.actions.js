@@ -1,4 +1,5 @@
 import axios from 'axios';
+const API = import.meta.env.VITE_API_URL;
 
 // Helper function for base API response structure
 const baseApiResponse = (data, isSuccess) => {
@@ -11,7 +12,7 @@ const baseApiResponse = (data, isSuccess) => {
     // Login User
 export const loginUser = async (input) => {
     try {
-        const response = await axios.post(`/user/login`, input); // ✅ proxy akan terusin ke localhost:5000
+        const response = await axios.post(`${API}/user/login`, input); // ✅ proxy akan terusin ke localhost:5000
         return baseApiResponse(response.data.payload, true);
     } catch (error) {
         console.error(error);
@@ -21,7 +22,7 @@ export const loginUser = async (input) => {
 
 export const signUpUser = async (input) => {
     try {
-        const response = await axios.post(`/user/register`, input); // ✅ sama di sini
+        const response = await axios.post(`${API}/user/register`, input); // ✅ sama di sini
         if (response.status === 201) {
             return baseApiResponse(response.data.payload, true);
         } else {
