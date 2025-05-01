@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
-import Product1 from '../assets/product1.jpg';
-import Product2 from '../assets/product2.png';
-import Product3 from '../assets/product3.jpg';
-import Product4 from '../assets/product4.jpg';
+import Product1 from '../assets/product17.jpg';
+import Product2 from '../assets/product18.png';
+import Product3 from '../assets/product19.jpg';
+import Product4 from '../assets/product20.png';
 import 'animate.css';
 
 export default function FeaturedProducts() {
@@ -72,17 +72,17 @@ export default function FeaturedProducts() {
                     {products.map((product, index) => (
                         <div
                             key={index}
-                            className="product-card opacity-0 bg-white/70 backdrop-blur-md rounded-xl shadow-lg p-6 text-center transition duration-300 hover:shadow-2xl hover:-translate-y-1"
+                            className="product-card opacity-0 bg-white rounded-xl shadow-lg p-6 text-center transition duration-300 hover:shadow-2xl hover:-translate-y-1"
                             style={{ animationDelay: `${index * 0.2}s` }}
                         >
-                        <img
-                        src={product.image}
-                        alt={product.title}
-                        className="w-full max-h-48 object-contain rounded-md mb-4"
-                        />
-                            <h3 className="text-lg font-semibold text-purple-800">{product.title}</h3>
-                            <p className="text-sm text-gray-700 mt-2 mb-4">{product.description}</p>
-                            <p className="text-md font-bold text-gray-800">{product.price}</p>
+                            <img
+                                src={product.image}
+                                alt={product.title}
+                                className="w-full max-h-48 object-contain rounded-md mb-4"
+                            />
+                            <h3 className="text-lg font-semibold text-purple-700">{product.title}</h3>
+                            <p className="text-sm text-gray-600 mt-2 mb-4">{product.description}</p>
+                            <p className="text-md font-bold text-gray-500">{product.price}</p>
                         </div>
                     ))}
                 </div>

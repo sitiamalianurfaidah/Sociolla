@@ -25,7 +25,7 @@ export default function AppRoutes() {
             <Route path="/user/register" element={<Register />} />
 
             {/* User */}
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/user/profile" element={<Profile />} />
             <Route path="/setting" element={<Setting />} />
 
             {/* Store */}
@@ -33,7 +33,7 @@ export default function AppRoutes() {
             <Route path="/stores/:id" element={<StoreDetail />} />
 
             {/* Item */}
-            <Route path="/items" element={<ItemList />} />
+            <Route path="/item/ItemList" element={<ItemList />} />
             <Route path="/items/byId/:id" element={<ItemDetail />} />
 
             {/* Transaction */}

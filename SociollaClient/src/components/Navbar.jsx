@@ -10,13 +10,18 @@ export default function Navbar({ onSearch }) {
         onSearch(e.target.value);
     };
 
+    const handleHomeClick = () => {
+        // Scroll ke bagian atas halaman
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth' // Menambahkan animasi smooth scroll
+        });
+    };
+
     const navItems = [
-        { label: 'Home', to: '/' },
-        { label: 'Stores', to: '/stores' },
-        { label: 'Items', to: '/items' },
-        { label: 'Transactions', to: '/transactions' },
-        { label: 'Profile', to: '/profile' },
-        { label: 'Top Up', to: '/topup' },
+        { label: 'Home', to: '/', onClick: handleHomeClick }, // Menambahkan onClick
+        { label: 'Items', to: 'item/itemList' },
+        { label: 'Profile', to: '/user/profile' },
         { label: 'Login', to: '/user/login' },
         { label: 'Register', to: '/user/register' },
     ];
@@ -31,6 +36,7 @@ export default function Navbar({ onSearch }) {
                         <li key={item.label}>
                             <Link
                                 to={item.to}
+                                onClick={item.onClick} // Menambahkan handler onClick ke Home
                                 className="text-white hover:text-pink-800 transition-all duration-300 ease-in-out transform hover:scale-[1.05] hover:brightness-110"
                             >
                                 {item.label}
