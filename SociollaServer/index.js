@@ -7,9 +7,10 @@ const PORT = process.env.PORT || 5000;
 const upload = require('./src/utils/upload.middleware'); 
 
 const corsOptions = {
-    origin: 'https://os.netlabdte.com',  
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], 
-    optionsSuccessStatus: 200 
+    origin: 'http://localhost:5050',  
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],  
+    optionsSuccessStatus: 200, 
 };
 
 app.use(cors(corsOptions));
@@ -22,6 +23,11 @@ app.use('/item', require('./src/routes/item.route'));
 app.use('/transaction', require('./src/routes/transaction.route'));
 app.get('/', (req, res) => {
     res.json({ message: 'CORS berhasil dikonfigurasi!' });
+});
+
+app.use((req, res, next) => {
+    console.log('CORS request:', req.method, req.url);
+    next();
 });
 
 app.listen(PORT, () => {

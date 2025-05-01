@@ -7,7 +7,7 @@ export default function Navbar({ onSearch }) {
 
     const handleSearch = (e) => {
         setSearchTerm(e.target.value);
-        onSearch?.(e.target.value); // biar aman kalau props kosong
+        onSearch(e.target.value);
     };
 
     const navItems = [
@@ -17,46 +17,42 @@ export default function Navbar({ onSearch }) {
         { label: 'Transactions', to: '/transactions' },
         { label: 'Profile', to: '/profile' },
         { label: 'Top Up', to: '/topup' },
-        { label: 'Login', to: '/login' },
+        { label: 'Login', to: '/user/login' },
+        { label: 'Register', to: '/user/register' },
     ];
 
     return (
         <nav className="bg-white text-black shadow-md sticky top-0 z-50 px-6 py-4 font-Poppins">
-        <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-            
-            {/* Logo */}
-            <div className="flex items-center space-x-4">
-            <span className="text-xl font-bold">Sociolla</span>
-            </div>
+            <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
 
-            {/* Nav Items */}
-            <div className="flex-1 flex justify-center">
-            <ul className="flex space-x-6 font-bold text-sm md:text-base">
-                {navItems.map((item) => (
-                <li key={item.label}>
-                    <Link
-                    to={item.to}
-                    className="no-underline transition-all duration-300 ease-in-out transform hover:scale-[1.05] hover:text-purple-600"
-                    >
-                    {item.label}
-                    </Link>
-                </li>
-                ))}
-            </ul>
-            </div>
+                {/* Nav Items */}
+                <div className="flex-1 flex justify-center">
+                    <ul className="flex flex-wrap justify-center space-x-6 font-semibold text-sm md:text-base">
+                        {navItems.map(item => (
+                            <li key={item.label}>
+                                <Link
+                                    to={item.to}
+                                    className="text-pink-600 hover:text-pink-800 transition-all duration-300 ease-in-out transform hover:scale-[1.05] hover:brightness-110"
+                                >
+                                    {item.label}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
 
-            {/* Search */}
-            <div className="relative w-full md:w-64">
-            <input
-                type="text"
-                value={searchTerm}
-                onChange={handleSearch}
-                placeholder="Search anything..."
-                className="bg-[#f5f3ff] border border-gray-300 rounded pl-10 pr-3 py-1 text-sm w-full focus:outline-none focus:ring-2 focus:ring-purple-400 shadow-sm placeholder-gray-500"
-            />
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                {/* Search Bar */}
+                <div className="relative w-full md:w-64">
+                    <input
+                        type="text"
+                        value={searchTerm}
+                        onChange={handleSearch}
+                        placeholder="Search anything..."
+                        className="bg-[#fef4f9] border border-pink-200 rounded-full pl-10 pr-4 py-2 text-sm w-full placeholder-pink-400 text-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-300 shadow-sm transition-all duration-200"
+                    />
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-pink-400 w-4 h-4" />
+                </div>
             </div>
-        </div>
         </nav>
     );
 }

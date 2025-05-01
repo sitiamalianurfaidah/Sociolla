@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-const backend_URI = 'http://localhost:5000';
-
 // Helper function for base API response structure
 const baseApiResponse = (data, isSuccess) => {
     return {
@@ -11,23 +9,26 @@ const baseApiResponse = (data, isSuccess) => {
     };
 
     // Login User
-    export const loginUser = async (input) => {
+export const loginUser = async (input) => {
     try {
-        const response = await axios.post(`${backend_URI}/user/login`, input);
+        const response = await axios.post(`/user/login`, input); // ✅ proxy akan terusin ke localhost:5000
         return baseApiResponse(response.data.payload, true);
     } catch (error) {
         console.error(error);
         return baseApiResponse(null, false);
     }
-    };
+};
 
-    // Register User
-    export const signUpUser = async (input) => {
+export const signUpUser = async (input) => {
     try {
-        const response = await axios.post(`${backend_URI}/user/register`, input);
-        return baseApiResponse(response.data.payload, true);
+        const response = await axios.post(`/user/register`, input); // ✅ sama di sini
+        if (response.status === 201) {
+            return baseApiResponse(response.data.payload, true);
+        } else {
+            return baseApiResponse(null, false);
+        }
     } catch (error) {
-        console.error(error);
+        console.error('Registration error:', error.response ? error.response.data : error);
         return baseApiResponse(null, false);
     }
 };
